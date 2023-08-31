@@ -1,0 +1,30 @@
+package com.ad364.drl_rulebc;
+
+// import data object classes here
+
+// declare any global variables here
+
+// declare utility functions
+
+// TODO: Add utility function for adding noncontiguous rows
+
+rule "FirstClassSeatRule"
+    when
+        TicketRequest( seatClass == "FC" )
+    then
+        insertLogical(RowPopulator.populateRows(1, 2));
+end
+
+rule "NoLoyaltySeatsRule"
+    when
+        TicketRequest( seatClass == "EC" )
+        Customer( loyaltyLevel == "None")
+    then
+        insertLogical(RowPopulator.populateRows(26, 38));
+end
+
+// TODO: Add Rule for Bronze Level Customers
+
+// TODO: Add Rule for Silver Level Customers
+
+// TODO: Add Rules for Gold Level Customers
